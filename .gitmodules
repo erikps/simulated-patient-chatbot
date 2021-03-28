@@ -1,0 +1,6 @@
+[submodule "Chatbot-Rasa"]
+	path = Chatbot-Rasa
+	url = https://github.com/daridr1000/Chatbot-Rasa.git
+[submodule "simulated-patient-chatbot-frontend"]
+	path = simulated-patient-chatbot-frontend
+	url = https://github.com/erikps/simulated-patient-chatbot-frontend.git
