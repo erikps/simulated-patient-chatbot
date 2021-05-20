@@ -2,12 +2,13 @@ import shutil
 import os
 import requests
 
-BACKEND_PATH = './srv/backend'
-FRONTEND_PATH = './srv/frontend'
-STATIC_PATH = './srv/var/www/static'
+BACKEND_PATH = '/srv/backend'
+FRONTEND_PATH = '/srv/frontend'
+STATIC_PATH = '/var/www/static'
 
 TMP_BUILDPATH = '__build_tmp'
 TMP_BUILDPATH_ZIP = TMP_BUILDPATH + '.zip'
+
 
 def download_zip(url, filepath):
     request = requests.get(url, stream=True)
