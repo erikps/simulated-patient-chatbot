@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve the simulated patient frontend.
+After=network.target
+
+[Service]
+User=$USER
+Group=www-data
+WorkingDirectory= /srv/frontend
+Environment="PATH=/srv/venvs/frontend/bin/"
+ExecStart=/srv/venvs/frontend/bin/gunicorn --workers 3 --bind 127.0.0.1:5000 -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target

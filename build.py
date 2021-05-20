@@ -1,6 +1,5 @@
 from util.util import *
 import subprocess
-import devsetup
 import os
 import shutil
 import pathlib
@@ -15,27 +14,21 @@ BACKEND_PATH = FD.joinpath('Chatbot-Rasa')
 
 def build():
 
-    clean() 
+    clean()
 
     os.mkdir(BUILDPATH)
     shutil.copytree(FRONTEND_PATH.joinpath('server'), BUILDPATH.joinpath(
         'frontend'), ignore=shutil.ignore_patterns('venv'))
 
     # create the frontend build
-    subprocess.run(['npm', 'run', 'build'], shell=True, cwd=str(FRONTEND_PATH.joinpath('webapp')))
+    subprocess.run(['npm', 'run', 'build'], shell=True,
+                   cwd=str(FRONTEND_PATH.joinpath('webapp')))
 
     shutil.copytree(FRONTEND_PATH.joinpath('webapp/build'),
                     BUILDPATH.joinpath('frontend/static'))
 
     shutil.copytree(BACKEND_PATH, BUILDPATH.joinpath('backend'), ignore=shutil.ignore_patterns(
-        '.git/', 'venv', 'models', 'data', 'tests', 'domain.yml', 'config.yml', '*.db', '*.db-shm', '*.db-wal', '*.dot'))
-
-    # prepare and copy the build setup file
-    shutil.copyfile(FD.joinpath('util/util.py'),
-                    BUILDPATH.joinpath('setup.py'))
-    with open(BUILDPATH.joinpath('setup.py'), 'a') as dstfile:
-        with open(FD.joinpath('res/setup.py'), 'r') as srcfile:
-            dstfile.write(srcfile.read())
+        '.git/', 'venv', 'models', 'tests', '*.db', '*.db-shm', '*.db-wal', '*.dot'))
 
     os.mkdir(BUILDPATH.joinpath('backend/models'))
 

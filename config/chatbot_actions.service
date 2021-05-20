@@ -1,0 +1,13 @@
+[Unit]
+Description=Rasa action server.
+After=network.target
+
+[Service]
+User=$USER
+Group=www-data
+WorkingDirectory=/srv/backend/
+Environment="PATH=/srv/venvs/backend/bin/"
+ExecStart=/srv/venvs/backend/bin/rasa run actions
+
+[Install]
+WantedBy=multi-user.target
